@@ -1,4 +1,4 @@
-name: Docker Image and Publish RC 2
+name: Docker Image and Publish rest-api RC
 
 on:
   pull_request:
