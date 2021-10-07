@@ -2,8 +2,10 @@ FROM node
 
 RUN mkdir -p /home/app
 
-RUN ls
+COPY ./app /home/app
 
-COPY $(pwd)/app /home/app
+RUN ls /home/app
+
+RUN cat ciao.txt
 
 CMD ["node", "/home/app/index.js"]
