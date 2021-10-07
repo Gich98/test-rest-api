@@ -9,6 +9,7 @@
         return response.json();
       }).then(data => {
         // Work with JSON data here
+        document.getElementById("json").textContent = JSON.stringify(data, undefined, 2);
         console.log(data);
       }).catch(err => {
         // Do something for an error here
@@ -17,6 +18,6 @@
   </script>
   </head>
   <body>
-    
+    <pre id="json"></pre>
   </body>
 </html>
