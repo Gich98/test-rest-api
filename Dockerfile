@@ -2,7 +2,7 @@ FROM node
 
 RUN mkdir -p /home/app
 
-RUN echo pwd
+RUN ls
 
 COPY $(pwd)/app /home/app
 
