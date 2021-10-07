@@ -1,0 +1,26 @@
+name: Docker Image and Publish RC
+
+on:
+  pull_request:
+    branches: [ master ]
+
+jobs:
+
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v2
+  
+    - name: Login DockerHub
+      run: docker login -u ${{ secrets.DOCKER_USER }} -p ${{ secrets.DOCKER_PASSWORD }}
+    
+    - name: Build the Docker image
+      run: docker build -t get-rest-api ./get-api
+
+    - name: Tag Docker image for the push
+      run: docker tag get-rest-api:latest ${{ secrets.DOCKER_USER }}/get-rest-api
+      
+    - name: Push Docker image to DockerHub
+      run: docker push ${{ secrets.DOCKER_USER }}/get-rest-api
