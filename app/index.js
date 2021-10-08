@@ -1,4 +1,5 @@
 const express = require("express");
+const cors = require("cors");
 const app = express();
 
 // express.json ritorna un middleware che verrà utilizato nel pipeline di richiesta dell'app
@@ -9,6 +10,20 @@ const courses = [
   { id: 2, name: "course2" },
   { id: 3, name: "course3" },
 ];
+
+// Tutte le richieste OPTIONS devono passare per CORS
+app.options("*", cors());
+// Accetta tutti gli Origin
+app.use(cors());
+
+/*
+---
+// Accetta solo gli Origin definiti al suo interno
+const corsOptions = {
+  origin: ["http://localhost/30000/", "http://secondurl.com"],
+  optionsSuccessStatus: 200
+};
+*/
 
 app.get("/", (req, res) => {
   res.send("Hello World, Test REST API and Kubernetes");
